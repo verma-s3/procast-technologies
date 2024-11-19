@@ -1,0 +1,105 @@
+// ========================================================================== //
+// Max-widths
+// ========================================================================== //
+.width(@width){ // example: 1920px
+	max-width: @width;
+	width: 100%;
+}
+.width(@width, @margin){ // example: 1920px
+	max-width: @width;
+	width: 100%;
+	margin-inline: @margin; //ex: auto
+}
+.container{
+  max-width: var(--content-width);
+  width: 100%;
+  margin-inline: auto;
+}
+// ========================================================================== //
+// Grid
+// ========================================================================== //
+.grid {
+  display: grid;
+}
+
+.grid(1) {
+  display: grid;
+  grid-template-columns: 100%;
+}
+
+.grid(@columns) {
+  display: grid;
+  grid-template-columns: repeat(@columns, minmax(0, 1fr));
+}
+
+// ========================================================================== //
+// paddings
+// ========================================================================== //
+.padding-lr{
+  padding-inline: var(--space-xs);
+  @media @min768{
+    padding-inline: var(--space-sm);
+  }
+  @media @min1024{
+    padding-inline: var(--space-md)
+  }
+}
+.padding-tb(){
+  padding-block: var(--space-md);
+  @media @min1024{
+    padding-block: var(--space-lg);
+  }
+}
+.padding-tb(@mobile, @desktop){
+  padding-block: @mobile;
+  @media @min1024{
+    padding-block: @desktop;
+  }
+}
+.padding{
+  .padding-lr();
+  .padding-tb();
+}
+// ========================================================================== //
+// margins
+// ========================================================================== //
+.margin-lr{
+  margin-inline: var(--space-xs);
+  @media @min768{
+    margin-inline: var(--space-sm);
+  }
+  @media @min1024{
+    margin-inline: var(--space-md)
+  }
+}
+
+// ========================================================================== //
+// Flex
+// ========================================================================== //
+.display-flex(@flex, @gap, @dir, @align){
+  display: @flex;
+  gap: @gap;
+  flex-direction: @dir;
+  align-items: @align;
+}
+// ========================================================================== //
+// Grid
+// ========================================================================== //
+.display-2-1( @gap, @row-gap){
+  display: grid;
+  .grid(1);
+  row-gap: @row-gap;
+  @media @min1024{
+    .grid(2);
+    gap: @gap;
+  }
+}
+// ========================================================================== //
+// menu
+// ========================================================================== //
+
+.menu-alignment{
+  display: flex;
+  gap: calc(2.5 * var(--space-unit));;
+  align-items: center;
+}
