@@ -193,9 +193,9 @@ class StarterSite extends Timber\Site
 	*/
 	// public function widget_area() {
 	// 	register_sidebar( array(
-	// 		'name'          => esc_html__( 'Sidebar', 'themename' ),
+	// 		'name'          => esc_html__( 'Sidebar', 'procast' ),
 	// 		'id'            => 'sidebar-1',
-	// 		'description'   => esc_html__( 'Add widgets here.', 'themename' ),
+	// 		'description'   => esc_html__( 'Add widgets here.', 'procast' ),
 	// 		'before_widget' => '<section id="%1$s" class="widget %2$s">',
 	// 		'after_widget'  => '</section>',
 	// 		'before_title'  => '<h2 class="widget-title">',
@@ -229,7 +229,7 @@ class StarterSite extends Timber\Site
 				}
 		
 				body {
-					background: #1d2327 !important;
+					background: #000 !important;
 				}
 				// body{
 					
@@ -242,29 +242,29 @@ class StarterSite extends Timber\Site
 				// }
 		
 				.login #login form {
-					background: #2c3338;
+					background: #c45200;
 					border: none;
 					border-radius: 5px;
 				}
 				.login #login form .button-secondary {
-					color: #2c3338;
+					color: #c45200;
 					opacity: .7;
 					transition: .3s;
 				}
 		
 				.login #login form input:focus {
-					border-color: #03554b;
-					box-shadow: 0 0 0 1px #03554b;
+					border-color: #ED8B00;
+					box-shadow: 0 0 0 1px #ED8B00;
 				}
 				.login #login form .button-primary {
-					background: #03554b;
-					border-color: #03554b;
+					background: #ED8B00;
+					border-color: #ED8B00;
 					transition: .3s;
 				}
 		
 				.login #login form .button-primary:hover {
-					background: #012a25;
-					border-color: #012a25;
+					background: #FFD291;
+					border-color: #FFD291;
 				}
 			</style>';
 	}
@@ -277,7 +277,7 @@ class StarterSite extends Timber\Site
 		
 	// *** login title ***
 	public function login_logo_url_title() {
-		return 'themename';
+		return 'procast';
 	}
 
 	// *** Remove unecessary menu items for all but Administrators ***
@@ -329,10 +329,10 @@ class StarterSite extends Timber\Site
 			width: 144px;
 		}
 		#wpadminbar {
-			background: #1d2327;
+			background: #000;
 		}
 		#wpadminbar .menupop .ab-sub-wrapper {
-			// background: #2c3338;
+			// background: #c45200;
 		}
 		#adminmenu a{
 			// color: #fff;
@@ -357,7 +357,7 @@ class StarterSite extends Timber\Site
 		#wpadminbar #wp-toolbar #wp-admin-bar-top-secondary li.hover > a:before,
 		#wpadminbar #wp-toolbar #wp-admin-bar-top-secondary li:hover > a:before,
 		#wpadminbar #wp-toolbar #wp-admin-bar-top-secondary #adminbarsearch:hover:before {
-			color: #5B9A92;
+			color: #c45200;
 		}
 	</style>
 	';
@@ -426,7 +426,7 @@ class StarterSite extends Timber\Site
 	 */
 	public function theme_register_nav_menus() {
 		register_nav_menus( array(
-			'primary_menu' => esc_html__( 'Primary Menu', 'themename' ),
+			'primary_menu' => esc_html__( 'Primary Menu', 'procast' ),
 		) );		
 	}
 
@@ -461,7 +461,7 @@ class StarterSite extends Timber\Site
 		#wpwrap #adminmenumain #adminmenu,
 		#wpwrap #adminmenumain #adminmenuback,
 		#wpwrap #adminmenumain #adminmenuwrap {
-			background-color: #1d2327;
+			background-color: #000;
 		}
 
 		#wpwrap #adminmenumain #adminmenu .wp-has-current-submenu .wp-submenu {
@@ -482,8 +482,8 @@ class StarterSite extends Timber\Site
 
 		#wpwrap #adminmenumain #adminmenuwrap #adminmenu li a:hover,
 		#wpwrap #adminmenumain #adminmenuwrap #adminmenu li a:focus {
-			color: #5B9A92;
-			box-shadow: inset 4px 0 0 0 #5B9A92;
+			color: #c45200;
+			box-shadow: inset 4px 0 0 0 #c45200;
 		}
 		#wpwrap #adminmenumain #adminmenuwrap #adminmenu li a:hover .wp-menu-image:before, 
 		#wpwrap #adminmenumain #adminmenuwrap #adminmenu li a:focus .wp-menu-image:before, 
@@ -491,43 +491,43 @@ class StarterSite extends Timber\Site
 		#wpwrap #adminmenumain #adminmenuwrap #adminmenu li.opensub a.menu-top .wp-menu-image:before, 
 		#collapse-button:hover,
 		#collapse-button:focus {
-			color: #5B9A92;
+			color: #c45200;
 		}
 
 		#wpwrap #adminmenumain #adminmenuwrap #adminmenu li a.wp-has-current-submenu,
 		.wp-core-ui .button-primary {
-			background: #03554b;
+			background: #ED8B00;
 			color: white !important;
 		}
 		.wp-core-ui .button-primary {
-			border-color: #03554b;
+			border-color: #ED8B00;
 		}
 		.wp-core-ui .button {
-			color: #03554b;
-			border-color: #03554b;
+			color: #ED8B00;
+			border-color: #ED8B00;
 			transition: .3s;
 		}
 		.wp-core-ui .button:focus,
 		.wrap .page-title-action:focus {
-			box-shadow: 0 0 0 1px #fff, 0 0 0 3px #03554b;
+			box-shadow: 0 0 0 1px #fff, 0 0 0 3px #ED8B00;
 		}
 		.wrap .page-title-action {
-			border: 1px solid #03554b;
-			color: #03554b;
+			border: 1px solid #ED8B00;
+			color: #ED8B00;
 			transition: .3s;
 		}
 
 		.wp-core-ui .button-primary:focus,
 		.wp-core-ui .button-primary:hover {
-			background: #012a25;
-			border-color: #012a25;
+			background: #FFD291;
+			border-color: #FFD291;
 		}
 		.wp-core-ui .button:focus,
 		.wp-core-ui .button:hover,
 		.wrap .page-title-action:focus,
 		.wrap .page-title-action:hover {
-			color: #012a25;
-			border-color: #012a25;
+			color: #FFD291;
+			border-color: #FFD291;
 		}
 
 	</style>
