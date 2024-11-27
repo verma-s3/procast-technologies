@@ -955,6 +955,9 @@ header {
                 flex-direction: column-reverse;
                 align-items: center;
             }
+            @media @min1024{
+                padding-right: 0px !important;
+            }
             .service-slider-arrows {
                 .display-flex(flex, var(--space-sm), row, center);
 
@@ -996,6 +999,100 @@ header {
                         path{
                             fill: #b0b0b0;
                         }
+                    }
+                }
+            }
+
+            //slider
+            .service-slider{
+                .slick-track{
+                    display: flex !important;
+                }
+        
+                .slick-slide{
+                    height: inherit !important;
+                }
+                &.slick-slider .slick-track, &.slick-slider .slick-list {
+                     height: 100% !important;
+                }
+        
+                .service-details{
+                    width: 100%;
+                    background-color: var(--black);
+                    height: 380px;
+                    position: relative;
+                    .b-15();
+                    overflow: hidden;
+                    max-width: 342px;
+                    @media @min768{
+                        margin-right: var(--space-sm);
+                        height: 600px;
+                        max-width: 536px;
+                    }
+                    img, .placeholder{
+                        width: 100%;
+                        display: block;
+                        background-color: var(--black);
+                        height: 380px;
+                        .b-15();
+                        height: 100%;
+                        object-fit: cover;
+        
+                        filter: brightness(.7);
+                        // max-width: 536px;
+                        @media @min768{
+                            height: 600px;
+                            // max-width: 536px;
+                        }
+                    }
+
+                    .content{
+                        position: absolute;
+                        bottom: var(--space-40);
+                        z-index: 50;
+                        @media @min768{
+                            bottom: var(--space-lg);
+                        }
+                        padding-inline: var(--space-40);
+                        h3{
+                            .h5();
+                            font-weight: 400;
+                            .border-bottom();
+                            padding-bottom: var(--space-sm);
+                            &::after{
+                                left: 0px;
+                                transform: none !important;
+                                width: 100%;
+                                height: 2px !important;
+                            }
+                        }
+                        h3, div, p{
+                            color: var(--white);
+                        }
+                        .body-content{
+                            margin-block: var(--space-sm);
+                            min-height: 70px;
+                        }
+                        .custom-btn{
+                            background-color: transparent;
+                            &:hover{
+                                background-color: var(--pri-100);
+                                color: var(--white);
+                            }
+                        }
+                        .no-show-off{
+                            visibility: hidden;
+                            opacity: 0;
+                        }
+                    }
+                    .grad{
+                        /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#000000+0,000000+100&0+0,0.65+100 */
+                        background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+                        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                        z-index: 10;
+                        position: absolute;
+                        width: 100%;
+                        inset: 0;
                     }
                 }
             }
