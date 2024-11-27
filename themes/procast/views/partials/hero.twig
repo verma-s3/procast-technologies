@@ -1,17 +1,63 @@
 {% import './components/image.twig' as Image %}
 
-{% if not fn('is_page',"10") %}
-    <div class="hero">
-        {% if fn('is_page','13') %}
-            {# <img class="img-responsive" src="{{Image(field.meta('hero_banner_image')).src}}" alt="{{Image(field.meta('about_image')).alt}}" /> #}
-        {# {% elseif fn('is_singular','products') %} #}
-            <p></p>
+{% if not fn('is_page',"8") %}
+	<div class="hero not-home-hero">
+		<div class="hero-text padding-lr">
+			<h1 class="h2 center container" data-aos="fade-in" data-aos-duration="1200" data-aos-delay="1200">{{field.meta('title')}}</h1>
+            {% if (field.meta('want_to') == true) and field.meta('subtitle') is not empty %}
+                <p class="subtitle h5">{{field.meta('subtitle')}}</p>
+            {% endif %}
+        </div>
+        {% if fn('is_page',"31") %}
+            <img src="{{ site.theme.link }}/images/banner/capabilities-banner.jpg" alt="{{field.meta('title')}}" class="img-responsive" data-aos="fade-zoom-in" data-aos-duration="800" data-aos-delay="800"/>
+        {# {% endif %} #}
+        {% elseif fn('is_page',"41") %}
+            <img src="{{ site.theme.link }}/images/banner/contact-banner.jpg" alt="{{field.meta('title')}}" class="img-responsive" data-aos="fade-zoom-in" data-aos-duration="800" data-aos-delay="800"/>
+        {# {% endif %} #}
+        {% elseif fn('is_page',"39") %}
+            <img src="{{ site.theme.link }}/images/banner/news-banner.jpg" alt="{{field.meta('title')}}" class="img-responsive" data-aos="fade-zoom-in" data-aos-duration="800" data-aos-delay="800"/>
+        {# {% endif %} #}
+        {% elseif fn('is_page',"29") %}
+            <img src="{{ site.theme.link }}/images/banner/process-banner.jpg" alt="{{field.meta('title')}}" class="img-responsive" data-aos="fade-zoom-in" data-aos-duration="800" data-aos-delay="800"/>
+        {# {% endif %} #}
+        {% elseif fn('is_page',"35") %}
+            <img src="{{ site.theme.link }}/images/banner/portfolio-banner.jpg" alt="{{field.meta('title')}}" class="img-responsive" data-aos="fade-zoom-in" data-aos-duration="800" data-aos-delay="800"/>
+        {# {% endif %} #}
+        {% elseif fn('is_page',"33") %}
+            <img src="{{ site.theme.link }}/images/banner/service-banner.jpg" alt="{{field.meta('title')}}" class="img-responsive" data-aos="fade-zoom-in" data-aos-duration="800" data-aos-delay="800"/>
+        {# {% endif %} #}
+        {% elseif fn('is_page',"27") %}
+            <img src="{{ site.theme.link }}/images/banner/who-we-are-banner.jpg" alt="{{field.meta('title')}}" class="img-responsive" data-aos="fade-zoom-in" data-aos-duration="800" data-aos-delay="800"/>
         {% endif %}
+	</div>
+{% endif %}
+{# Single page for Services #}
+{% if fn('is_singular','our-services') %}
+    <div class="hero not-home-hero">
+        <div class="hero-text padding-lr">
+            <h1 class="h2 center container" data-aos="fade-in" data-aos-duration="1200" data-aos-delay="1200">{{post.title}}</h1>
+        </div>
+        <img src="{{ site.theme.link }}/images/banner/single-service-banner.jpg" alt="{{field.meta('title')}}" class="img-responsive" data-aos="fade-zoom-in" data-aos-duration="800" data-aos-delay="800"/>
+    </div>
+{% endif %}
+{# Single page for News #}
+{% if fn('is_singular','news') %}
+    <div class="hero not-home-hero">
+        <div class="hero-text padding-lr">
+            <h1 class="h2 center container" data-aos="fade-in" data-aos-duration="1200" data-aos-delay="1200">News &amp; Insights</h1>
+        </div>
+        <img src="{{ site.theme.link }}/images/banner/news-single-banner.jpg" alt="{{field.meta('title')}}" class="img-responsive" data-aos="fade-zoom-in" data-aos-duration="800" data-aos-delay="800"/>
     </div>
 {% endif %}
 {# if the page is home page #}
-{% if fn('is_page',"10") %}
-    <div class="hero">
-         <img class="img-responsive" src="{{Image(field.meta('hero_banner')).src}}" alt="{{Image(field.meta('hero_banner')).alt}}" />
-    </div>
+{% if fn('is_page',"8") %}
+	<div class="hero home-hero">
+		<video
+			width="100%" muted loop autoplay poster="{{ site.theme.link }}/images/banner/hero-banner.jpg" controlslist="nodownload">{# <source src="/wp-content/themes/" type="video/webm">
+				            <source src="{{ site.theme.link }}/static/video/southeast-video.mp4" type="video/mp4">                     #}
+		</video>
+        <div class="hero-text padding-lr">
+		    <h1 class="h2 center container" data-aos="fade-in" data-aos-duration="1200" data-aos-delay="1500">{{field.meta('title')}}</h1>
+	    </div>
+	</div>
 {% endif %}

@@ -1,0 +1,29 @@
+{% import './components/image.twig' as Image %}
+{% import './components/button.twig' as Button %}
+{% extends "base.twig" %} 
+
+{% block content %}
+    <section class="{{field.title}}-page padding" id="{{field.title|sanitize}}">
+        <div class="container">
+            <div class="news-insights-list">
+                 {% if news is not empty %}
+                    <div class="news-content">
+                        {% for news in news %}
+                            <div class="news-div">
+                                <h2 class="h5">{{news.title|length > 55 ? news.title|slice(0,55) ~ '...' : news.title}}</h2>   
+                                <img class="img-responsive" src="{{ news.thumbnail.src}}" alt="feature-image" />
+                                <div class="content">
+                                    {{news.news_details|length > 190 ? news.news_details|slice(0,190) ~ '....' : news.news_details}}
+                                </div>
+                                <div class="btn">                                
+                                   <a class="custom-btn" href="{{news.link}}" aria-label="{{news.title}}">Learn more</a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

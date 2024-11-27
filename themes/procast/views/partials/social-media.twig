@@ -1,32 +1,27 @@
-{# <div class="social-media">
+<div class="social-media">
   {% if options.facebook %}
     <a href="{{ options.facebook }}" target="_blank" rel="noopener noreferrer"  aria-label="open facebook">
-      {{ source(directory ~ '/static/images/social/facebook.svg') }}
+      {{ source(directory ~ '/images/social/facebook.svg') }}
     </a>
   {% endif %}
   {% if options.instagram %}
     <a href="{{ options.instagram }}" target="_blank" rel="noopener noreferrer"  aria-label="open instagram">
-      {{ source(directory ~ '/static/images/social/instagram.svg') }}
-    </a>
-  {% endif %}
-  {% if options.tiktok %}
-    <a href="{{ options.tiktok }}" target="_blank" rel="noopener noreferrer"  aria-label="open tiktok">
-      {{ source(directory ~ '/static/images/social/tiktok.svg') }}
+      {{ source(directory ~ '/images/social/instagram.svg') }}
     </a>
   {% endif %}
   {% if options.twitter %}
-    <a href="{{ options.twitter }}" target="_blank" rel="noopener noreferrer"  aria-label="open twitter">
-      {{ source(directory ~ '/static/images/social/twitter.svg') }}
+    <a href="{{ options.twitter }}" target="_blank" rel="noopener noreferrer"  aria-label="open twitter" class="twitter">
+      {{ source(directory ~ '/images/social/twitter.svg') }}
     </a>
   {% endif %}
-   {% if options.linkedin %}
+  {% if options.linkedin %}
     <a href="{{ options.linkedin }}" target="_blank" rel="noopener noreferrer"  aria-label="open linkedin">
-      {{ source(directory ~ '/static/images/social/linkedin.svg') }}
+      {{ source(directory ~ '/images/social/linkedin.svg') }}
+    </a>
+  {% endif %}  
+  {% if options.you_tube %}
+    <a href="{{ options.you_tube }}" target="_blank" rel="noopener noreferrer"  aria-label="open you tube">
+      {{ source(directory ~ '/images/social/you-tube.svg') }}
     </a>
   {% endif %}
-  {% if options.youtube %}
-    <a href="{{ options.youtube }}" target="_blank" rel="noopener noreferrer"  aria-label="open you tube">
-      {{ source(directory ~ '/static/images/social/youtube.svg') }}
-    </a>
-  {% endif %}
-</div> #}
+</div>

@@ -1,0 +1,29 @@
+{% extends "base.twig" %}
+{% block content %}
+	<div class="content-wrapper">
+		<article class="post-type-{{post.post_type}} padding" id="post-{{ post.ID}}">
+			<section class="article-content">
+				<div class="article-details">
+					<h2>{{post.title}}</h2>
+					<div class="time-read">
+						<p class="date">{{ post.date|date('F j, Y')}}</p>
+						{% set wordCount = post.meta('news_details')|split(' ')|length %}
+						{% include 'partials/read.twig' %}
+					</div>
+                    <div class="break-line"></div>
+					<div class="share-story">
+						{% include 'partials/share.twig' %}
+					</div>
+					<div class="btn">
+						<a class="custom-btn" href="/news-insight/" aria-label="back-btn">Back to news &amp; insights</a>
+					</div>
+				</div>
+				<div class="article-body">
+					<img src="{{ post.thumbnail.src}}" alt="feature-image"/>
+					{{post.meta('news_details')}}
+				</div>
+			</section>
+
+		</article>
+	</div>
+{% endblock %}

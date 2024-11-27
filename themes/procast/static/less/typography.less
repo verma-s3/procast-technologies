@@ -7,43 +7,61 @@
 
 .font-size(@maxsize, @minsize){    
     font-size: ~"calc(@{minsize}px + ( @{maxsize} - @{minsize} ) * ((100vw - 370px) / (1640 - 370)))";  
-    @media @min1920{
+    @media @min1440{
         font-size: ~"@{maxsize}px";
     }
 }
 
 
-.h1,.h2,.h3,.h4,.h5,.h6 {
+h1, h2, h3, h4, h5, h6,.h1,.h2,.h3,.h4,.h5,.h6 {
     font-family: var(--font-primary);
-    color: var(--pri-500);
-    .font-size(80,48);
+    color: var(--pri-100);
+    .font-size(64,36);
     line-height: var(--heading-line-height);
-    font-weight: 700;
+    font-weight: 600;
 }
 
-.h2 {
-    .font-size(60,40);
+h2, .h2 {
+    .font-size(48,32);
 }
 
-
-.h3 {
-   .font-size(48,20);
+h3, .h3 {
+   .font-size(32,20);
 }
 
-.h4 {
-    .font-size(30, 20);
+h4, .h4 {
+    .font-size(28, 20);
+}
+h5, .h5 {
+    .font-size(28, 18);
 }
 
-.h5,.h6 {
+h6,.h6 {
     .font-size(20, 16);
 }
 
-p,li,a,td,span, legend, label, .wpcf7-response-output {
+p,li,a,td,span, legend, label, .wpcf7-response-output, .p1, .section-title, .quote {
     font-family: var(--font-primary);
     color: var(--black);
     line-height: var(--body-line-height);
     font-weight: 400;
-    .font-size(20, 16);
+    .font-size(16, 13);
+}
+
+.p1{
+    .font-size(20,16);
+    font-weight: 500;
+    color: var(--white);
+}
+
+.section-title{
+    font-weight: 300;
+    color: var(--white);
+}
+
+.quote{
+    .font-size(32,20);
+    font-weight: 600;
 }
 
 a, button, .wp-block-button__link {
@@ -51,12 +69,19 @@ a, button, .wp-block-button__link {
     text-decoration: none;
     &:hover {
        text-decoration: underline;
+       color: var(--pri-100);
     }
 }
 
-mark{
-    color: var(--pri-500);
-    background-color: var(--white);
-    transition: all .3s ease-in-out;
+// mark{
+//     color: var(--pri-500);
+//     background-color: var(--white);
+//     transition: all .3s ease-in-out;
+// }
+.letter-spacing(@mb, @dk){
+    letter-spacing: ~"@{mb}px";
+    @media @min768{
+        letter-spacing: ~"@{dk}px";
+    }
 }
 

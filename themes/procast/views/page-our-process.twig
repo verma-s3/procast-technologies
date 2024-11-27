@@ -1,0 +1,72 @@
+{% import './components/image.twig' as Image %}
+{% import './components/button.twig' as Button %}
+{% extends "base.twig" %}
+
+{% block content %}
+	<section class="{{field.slug}}-page" id="{{field.slug}}-page">
+		<section class="page-details padding" id="page-details">
+			<div class="container center">
+				{% set page = field.meta('page_details') %}
+				<p class="section-title">{{page.section_title}}</p>
+				<h2 class="title">{{page.main_title}}</h2>
+				<img class="img-responsive desktop-view" src="{{Image(page.featured_image).src}}" alt="{{Image(page.featured_image).alt}}"/>
+				<img class="img-responsive mobile-view" src="{{Image(page.featured_image_mobile).src}}" alt="{{Image(page.featured_image_mobile).alt}}"/>
+				<div class="content">
+					{{page.description}}
+				</div>
+			</div>
+		</section>
+
+		<section class="mold-advantages padding" id="mold-advantages">
+			<div class="container">
+				{% set page = field.meta('advantages_details') %}
+				<p class="section-title">{{page.section_title}}</p>
+				<h2 class="title">{{page.main_title}}</h2>
+				<div class="advantages-list">
+					{% for advan in page.advantages %}
+						<div class="advantage">
+							<div class="logo">{{ function('file_get_contents', Image(advan.logo).src) }}</div>
+							<h3 class="h5">{{advan.title}}</h3>
+							<div class="content">
+								{{advan.details}}
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+				<div class="btn">
+					<a class="custom-btn see-more-btn" href="javascript:void(0)">See more</a>
+				</div>
+			</div>
+		</section>
+
+		<section class="versatality-details padding-tb" id="versatality-details">
+			<div class="container padding-lr">
+				{% set page = field.meta('versatility_details') %}
+				<p class="section-title">{{page.section_title}}</p>
+				<h2 class="title">{{page.main_title}}</h2>
+			</div>
+            <div class="versatality-content padding-top" id="versatality-content">
+                <img class="img-responsive" src="{{Image(page.featured_image).src}}" alt="{{Image(page.featured_image).alt}}"/>
+                <div class="body-content">
+                    {{page.description}}
+                </div>
+            </div>
+		</section>
+
+		<section class="solution-details padding-tb" id="solution-details">
+			<div class="container padding-lr">
+				{% set page = field.meta('solution_details') %}
+				<p class="section-title">{{page.section_title}}</p>
+				<h2 class="title">{{page.main_title}}</h2>
+			</div>
+            <div class="solutions-content padding-top" id="solutions-content">
+                <div class="body-content">
+                    {{page.description}}
+                </div>
+                <img class="img-responsive" src="{{Image(page.featured_image).src}}" alt="{{Image(page.featured_image).alt}}"/>
+            </div>
+		</section>
+
+	</section>
+
+{% endblock %}

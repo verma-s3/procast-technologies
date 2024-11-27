@@ -129,19 +129,33 @@ class StarterSite extends Timber\Site
 	
 	/** This is where you can register custom post types. */
 	public function register_custom_post_types() {
-		//Recipes
-		// register_post_type( 'recipe',
-		// array(
-		// 	'labels' => array(
-		// 		'name' => __( 'Recipe' ),
-		// 		'singular_name' => __( 'Recipe' )
-		// 	),
-		// 	'public' => true,
-		// 	'has_archive' => false,
-		// 	'menu_icon'   => 'dashicons-carrot',
-		// 	'supports'    => array('title', 'editor', 'custom-fields'),
-		// 	)
-		// );
+		//News
+		register_post_type( 'news',
+		array(
+			'labels' => array(
+				'name' => __( 'News' ),
+				'singular_name' => __( 'News' )
+			),
+			'public' => true,
+			'has_archive' => false,
+			'menu_icon'   => 'dashicons-format-aside',
+			'supports'    => array('title', 'thumbnail'),
+			)
+		);
+
+		// Our Services
+		register_post_type( 'our-services',
+		array(
+			'labels' => array(
+				'name' => __( 'Our Services' ),
+				'singular_name' => __( 'Our Services' )
+			),
+			'public' => true,
+			'has_archive' => false,
+			'menu_icon'   => 'dashicons-hammer',
+			'supports'    => array('title', 'thumbnail'),
+			)
+		);
 
 
 		//at the end after register custom post type
@@ -208,7 +222,7 @@ class StarterSite extends Timber\Site
 		echo '
 			<style type="text/css">
 				.login #login h1 a {
-					background-image: url(' . get_stylesheet_directory_uri() . '/static/images/logo_horizontal_reverse.svg);
+					background-image: url(' . get_stylesheet_directory_uri() . '/images/logo/procast-logo.svg);
 					background-size: contain;
 				background-position: center;
 					width: 100%;
@@ -297,6 +311,14 @@ class StarterSite extends Timber\Site
 			$template = get_post_meta($id, '_wp_page_template', true);
 			switch ($template) {
 				case 'page-templates/page-home.php':
+				case 'page-templates/page-capabilities.php':
+				case 'page-templates/page-careers.php':
+				case 'page-templates/page-contact.php':
+				case 'page-templates/page-news-insights.php':
+				case 'page-templates/page-our-process.php':
+				case 'page-templates/page-portfolio.php':
+				case 'page-templates/page-services.php':
+				case 'page-templates/page-who-we-are.php':
 
 				remove_post_type_support('page', 'editor');
 				break;
@@ -308,10 +330,10 @@ class StarterSite extends Timber\Site
 	}
 
 	/* Use Options Page Globally */
-	// public function options_page_global( $context ) {
-	// 	$context['options'] = get_fields('option');
-	// 	return $context;
-	// }
+	public function options_page_global( $context ) {
+		$context['options'] = get_fields('option');
+		return $context;
+	}
 
 	/* Custom Backend Logo */
 	public function admin_custom_logo() {
@@ -321,7 +343,7 @@ class StarterSite extends Timber\Site
 		}
 		#wpadminbar #wp-toolbar #wp-admin-bar-root-default #wp-admin-bar-wp-logo .ab-item .ab-icon:before {
 			display: block;
-			background-image: url(' . get_stylesheet_directory_uri() . '/static/images/logo_horizontal_reverse.svg);
+			background-image: url(' . get_stylesheet_directory_uri() . '/images/logo/procast-logo.svg);
 			background-position: center;
 			background-size: contain;
 			background-repeat: no-repeat;
@@ -575,7 +597,7 @@ class StarterSite extends Timber\Site
 	public function loadGoogleFonts() {
 		echo '<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">';
+		<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">';
 	}
 
 
@@ -583,13 +605,13 @@ class StarterSite extends Timber\Site
 	 * Load Favicon
 	 **************************/
 	public function loadFavicon() {
-		echo '<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-		<link rel="manifest" href="/site.webmanifest">
-		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-		<meta name="msapplication-TileColor" content="#ffffff">
-		<meta name="theme-color" content="#ffffff">';
+		// echo '<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		// <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		// <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		// <link rel="manifest" href="/site.webmanifest">
+		// <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+		// <meta name="msapplication-TileColor" content="#ffffff">
+		// <meta name="theme-color" content="#ffffff">';
 	}
 
 	/*******************************

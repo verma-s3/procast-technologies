@@ -1,0 +1,35 @@
+{% import './components/image.twig' as Image %}
+{% import './components/button.twig' as Button %}
+{% extends "base.twig" %}
+
+{% block content %}
+	<section class="{{field.title}}-page" id="{{field.title}}-page">
+		<div class="padding page-intro container">
+			<div class="wrapper">
+                <h2 class="title">{{field.meta('page_details').title}}</h2>
+                <div class="description">{{field.meta('page_details').desc}}</div>
+            </div>
+		</div>
+
+        <div class="padding capabilities-details container">
+			<div class="wrapper">
+                {% if field.meta('equipment_detials') is not empty %}
+                    {% for equip in field.meta('equipment_detials') %}
+                        <div class="equipment-list">
+                            <h2 class="h3">{{equip.main_title}}</h2>
+                            {% for list in equip.equipment_list %}
+                                <h3 class="p1">{{list.title}}</h3>
+                                {% if (list.add_details) == true and list.desc is not empty %}
+                                    <div class="description">
+                                        {{list.desc}}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+		</div>
+	</section>
+
+{% endblock %}

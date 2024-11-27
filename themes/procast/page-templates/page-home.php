@@ -6,33 +6,20 @@
 /**
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package greattastes
+ * @package procast
  */
-/****************************
-
- * QUERY FEATURED RECIPES
-
- ***************************/
-
-$recipeArgs = [
-  'post_type' => 'recipe',
+$serviceArgs = [
+  'post_type' => 'our-services',
   'post_status' => 'publish',
   'posts_per_page' => -1,
-  'meta_query' => [
-    [
-      'key' => 'featured',
-      'value' => true,
-      'Compare' => 'IN'
-    ]
-  ]
+  'orderby' => 'rand',
 ];
-
 /****************************************************
  * STORE ALL LOGIC IN CONTEXT AND OUTPUT TO VIEW
  ***************************************************/
 $context = Timber::context();
 $context['field'] = Timber::get_post();
-$context['recipes'] = Timber::get_posts($recipeArgs);
+$context['services'] = Timber::get_posts($serviceArgs);
 $templates = array( 'page-home.twig' );
 Timber::render( $templates, $context );
 

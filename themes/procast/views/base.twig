@@ -3,75 +3,84 @@
 
 {# Blocks & Includes #}
 {% block html_head_container %}
-{% include 'partials/html-header.twig' %}
-    {% block head %}
-    {% endblock %}
-    </head>
-{% endblock %}
-
-    <body class="{{body_class}}" data-template="base.twig">
-        <!--[if lt IE 7]>
+	{% include 'partials/html-header.twig' %}
+	{% block head %}{% endblock %}
+</head>{% endblock %}<body
+class="{{body_class}}" data-template="base.twig">
+<!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <a class="skip-link screen-reader-text" href="#content">{{ _e( 'Skip to content')}}</a>
-        {# <a href="javascript:" id="return-to-top"><i class="glyphicon glyphicon-chevron-up" aria-hidden="true"></i></a> #}
+<a class="skip-link screen-reader-text" href="#content">{{ _e( 'Skip to content')}}</a>
+{# <a href="javascript:" id="return-to-top"><i class="glyphicon glyphicon-chevron-up" aria-hidden="true"></i></a> #}
 
-        {% block header %}
-            <header class="header">
-                <div class="wrapper w-1920">
-                    <a class="site-logo" href="{{site.url}}" rel="home" aria-label="{{site.name}}">
-                        {# {{source (directory ~ '/static/images/logo/tricor-color-logo.svg') }} #}
-                    </a>
+{% block header %}
+	<header class="header padding-lr">
+		<div class="wrapper container">
+			<a class="site-logo" href="{{site.url}}" rel="home" aria-label="{{site.name}}">
+				{{source (directory ~ '/images/logo/procast-logo.svg') }}
+			</a>
 
-                    <nav id="site-navigation" class="nav-main" role="navigation">
-                        {% include "menu.twig" with{'items':menu.get_items} %}
-                    </nav>                    
-        
-                    <div class="button_container" id="toggle">
-                        <span class="top"></span>
-                        <span class="middle"></span>
-                        <span class="bottom"></span>
-                    </div>
-                </div>
-            </header>
-        {% endblock %}
+			<nav id="site-navigation" class="nav-main" role="navigation">
+				{% include "menu.twig" with{'items':menu.get_items} %}
+			</nav>
 
-        {# Include Hero #}
-        {% include 'partials/hero.twig' %}
-
-      
-
-        <section id="content" role="main" class="content-wrapper">
-            <div class="wrapper{{sidebar_class}}"> 
-                {% block content %}{% endblock %}
-            </div>
-
-            {# {% if sidebar %}
-                <aside class="layout-sidebar">{{sidebar}}
-                </aside>
-            {% endif %} #}
-            
-        </section>
-
-
-        <div class="overlay" id="overlay" aria-hidden="hidden">            
-           <a class="site-logo" href="{{site.url}}" rel="home" aria-label="{{site.name}}">
-                {# {{source (directory ~ '/static/images/logo/tricor-color-logo.svg') }} #}
-            </a> 
-			<div class="overlay-nav-main">
-				<nav id="site-navigation3" class="overlay-menu" role="navigation">
-                    {% include "menu.twig" with{'items':menu.get_items} %}
-                </nav>
+			<div class="button_container" id="toggleOpen">
+				<span class="top"></span>
+				<span class="middle"></span>
+				<span class="bottom"></span>
+				<span class="text"></span>
 			</div>
-        </div>
-        
-        {% block footer %}
-            <footer id="footer">
-                {% include 'partials/footer.twig' %}
-            </footer>
-            {{ function('wp_footer')}}
-        {% endblock %}
-        <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-       
-    </body>
-</html>
+
+		</div>
+	</header>
+{% endblock %}
+
+{# Include Hero #}
+{% include 'partials/hero.twig' %}
+
+
+<section id="content" role="main" class="content-wrapper">
+	<div class="wrapper{{sidebar_class}}"> {% block content %}{% endblock %}
+		</div>
+
+		{# {% if sidebar %}
+				                <aside class="layout-sidebar">{{sidebar}}
+				                </aside>
+				            {% endif %} #}
+
+	</section>
+
+
+	<div class="overlay padding-lr" id="overlay" aria-hidden="hidden">
+		<div class="wrapper container">
+			<a class="site-logo" href="{{site.url}}" rel="home" aria-label="{{site.name}}">
+				{{source (directory ~ '/images/logo/procast-logo.svg') }}
+			</a>
+			<div class="overlay-nav-main ">
+				<nav id="site-navigation3" class="overlay-menu" role="navigation">
+					{% include "menu.twig" with{'items':menu.get_items} %}
+				</nav>
+				<div class="break-line"></div>
+				<div class="connect-with-us">
+					{% include 'partials/social-media.twig' %}
+				</div>
+			</div>
+			<div class="button_container menu-close" id="toggleClose">
+				<span class="top"></span>
+				<span class="middle"></span>
+				<span class="bottom"></span>
+				<span class="text"></span>
+			</div>
+		</div>
+	</div>
+
+	{% block footer %}
+		<footer id="footer">
+			{% include 'partials/footer.twig' %}
+		</footer>
+		{{ function('wp_footer')}}
+	{% endblock %}
+	<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+</body></html>
+
