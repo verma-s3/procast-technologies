@@ -3,7 +3,142 @@
 {% extends "base.twig" %} 
 
 {% block content %}
-    <section class="first {{field.title}}-page">
+    <section class="{{field.slug}}-page" id="{{field.slug}}-page">
+        <section class="journey-section padding-tb" id="journey-section">
+			<div class="container padding-lr">
+				{% set page = field.meta('journey') %}
+				<p class="section-title">{{page.section_title}}</p>
+				<h2 class="title">{{page.title}}</h2>
+				<div class="body-content">{{page.description}}</div>
+			</div>
+            <div class="milstoners-container padding-top padding-lr" id="milstoners-container">
+                {# milestones slider here #}
+                <h3 class="slider-title">{{page.milestones.title}}</h3>
+                <div class="milestone-slider">
+
+                </div>
+
+                {# mobile-view #}
+                <div class="milestones-mobile-view">
+
+                </div>
+            </div>
+		</section>
+
+        <section class="padding-lr padding-top mission-section" id="mission-section">
+            <div class="container">
+            {% set page = field.meta('mission') %}
+                <div class="image-section">
+                    <img src="{{Image(page.image).src}}" alt="{{Image(page.image).alt}}" class="img-responsive" />
+                </div>
+                <div class="content-section">
+                    <h2 class="title">{{page.title}}</h2>
+                    <div class="body-content">{{page.description}}</div>
+                    <div class="values-section">
+                        {% set values = page.values %}
+                        <h3 class="section-title-core">{{values.title}}</h3>
+                        <div class="list-items">
+                            {% for value in values.core_values %}
+                                <div class="value-details">
+                                    <h4 class="name">{{value.title}}</h4>
+                                    <div class="body-content">{{value.desc}}</div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="padding vision-section" id="vision-section">
+            <div class="container">
+            {% set page = field.meta('vision') %}
+                <div class="content-section">
+                    <h2 class="title">{{page.title}}</h2>
+                    <h3 class="section title">{{page.section_title}}</h3>
+                    <div class="body-content">{{page.description}}</div>
+                </div>
+                <div class="image-section">
+                    <img src="{{Image(page.image).src}}" alt="{{Image(page.image).alt}}" class="img-responsive" />
+                </div>
+            </div>
+        </section>
+
+        <section class="padding mantra-section" id="mantra-section">
+            <div class="container">
+            {% set page = field.meta('mantra') %}
+                <div class="content-section">
+                    <h2 class="title">{{page.title}}</h2>
+                    <div class="body-content">{{page.description}}</div>
+                </div>
+                <div class="mantras">
+                    {% for culture in page.culture %}
+                        <div class="culture-list">
+                            <div class="logo">
+								{{ function('file_get_contents', Image(culture.logo).src) }}
+							</div>
+							<h3 class="name h6">{{culture.title}}</h3>
+                            <div class="content">{{culture.desc}}</div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <section class="padding workspace-section" id="workspace-section">
+            <div class="container">
+            {% set page = field.meta('workspace') %}
+                <div class="content-section">
+                    <h2 class="title">{{page.title}}</h2>
+                    <div class="body-content">{{page.description}}</div>
+                </div>
+                <div class="workspaces">
+                    {% for culture in page.culture %}
+                        <div class="culture-list">
+                            <div class="logo">
+								{{ function('file_get_contents', Image(culture.logo).src) }}
+							</div>
+							<h3 class="name h6">{{culture.title}}</h3>
+                            <div class="content">{{culture.desc}}</div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="tag-line">
+                    {{page.section_subject}}
+                </div>
+                <div class="view-btn">
+					<a class="custom-btn" href="{{page.button.page_link}}" aria-label="Career page">{{page.button.name}}</a>
+				</div>
+            </div>
+        </section>
+
+        <section class="padding community-section" id="community-section">
+            <div class="container">
+            {% set page = field.meta('community') %}
+            {% set comm = field.meta('our_community') %}
+                <div class="content-section">
+                    <h2 class="title">{{page.title}}</h2>
+                    <div class="body-content">{{page.description}}</div>
+                </div>
+                <div class="communities">
+                    {% for community in comm %}
+                        <div class="list-items">
+                            {% set comm = community.community_support %}
+                            <div class="image-section">
+                                <img src="{{Image(comm.featured_image).src}}" alt="{{Image(comm.featured_image).alt}}" class="img-responsive">
+                            </div>
+                            <div class="content-section">
+                                <div class="logo">
+                                    {{ function('file_get_contents', Image(comm.logo).src) }}
+                                </div>
+                                <h3 class="name">{{comm.title}}</h3>
+                                <div class="content">{{comm.desc}}</div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
 
     </section>
 

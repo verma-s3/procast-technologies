@@ -32,51 +32,160 @@
 				<div class="service-slider">
 					{% for list in services %}
 						{% if list.add_this_service_to_home_page == true %}
-						{% set service = list.meta('service_introduction') %}
+							{% set service = list.meta('service_introduction') %}
 							<div class="service-details">
 								<div class="grad"></div>
-                                <div class="slider-image">
-                                    {% if service.background_image is not empty %}
-                                        <img src="{{Image(service.background_image).src}}" alt="{{Image(service.background_image).alt}}" class="img-responsive"/>
-                                    {% else %}
-                                        <div class="placeholder"></div>
-                                    {% endif %}
-                                    <div class="content">
-                                        <h3 class="title">{{service.title}}</h3>
-                                        <div class="body-content">
-                                            {{service.desc}}
-                                        </div>
-                                        <a class="custom-btn" href="{{list.link}}" aria-label="{{list.title}}">Learn More</a>
-                                    </div>
-                                </div>
+								<div class="slider-image">
+									{% if service.background_image is not empty %}
+										<img src="{{Image(service.background_image).src}}" alt="{{Image(service.background_image).alt}}" class="img-responsive"/>
+									{% else %}
+										<div class="placeholder"></div>
+									{% endif %}
+									<div class="content">
+										<h3 class="title">{{service.title}}</h3>
+										<div class="body-content">
+											{{service.desc}}
+										</div>
+										<a class="custom-btn" href="{{list.link}}" aria-label="{{list.title}}">Learn More</a>
+									</div>
+								</div>
 							</div>
 						{% endif %}
 					{% endfor %}
 
-                    {# service that does nto included in our-services register custom services #}
+					{# service that does nto included in our-services register custom services #}
 					{% set services = field.meta('services') %}
-                    {% for list in services.core_service %}
-                        <div class="service-details">
-                            <div class="grad"></div>
-                            <div class="slider-image">
-                                {% if list.image is not empty %}
-                                    <img src="{{Image(list.image).src}}" alt="{{Image(list.image).alt}}" class="img-responsive"/>
-                                {% else %}
-                                    <div class="placeholder"></div>
-                                {% endif %}
-                                <div class="content">
-                                    <h3 class="title">{{list.title}}</h3>
-                                    <div class="body-content">
-                                        {{list.desc}}
-                                    </div>
-                                    <a class="custom-btn no-show-off" href="{{list.link}}" aria-label="{{list.title}}">Learn More</a>
-                                </div>
-                            </div>
-                        </div>
+					{% for list in services.core_service %}
+						<div class="service-details">
+							<div class="grad"></div>
+							<div class="slider-image">
+								{% if list.image is not empty %}
+									<img src="{{Image(list.image).src}}" alt="{{Image(list.image).alt}}" class="img-responsive"/>
+								{% else %}
+									<div class="placeholder"></div>
+								{% endif %}
+								<div class="content">
+									<h3 class="title">{{list.title}}</h3>
+									<div class="body-content">
+										{{list.desc}}
+									</div>
+									<a class="custom-btn no-show-off" href="{{list.link}}" aria-label="{{list.title}}">Learn More</a>
+								</div>
+							</div>
+						</div>
 					{% endfor %}
 				</div>
 			</div>
 		</section>
+
+		<section class="industries-we-serve padding" id="industries-we-serve">
+			<div class="container">
+				{% set page = field.meta('industries') %}
+				<p class="section-title">{{page.section_title}}</p>
+				<h2 class="title">{{page.title}}</h2>
+				<div class="body-content">{{page.desc}}</div>
+				<div class="industries-list padding-top" id="industries-list">
+					{% for indust in page.industries_list %}
+						<div class="industries">
+							<div class="logo">
+								{{ function('file_get_contents', Image(indust.logo).src) }}
+							</div>
+							<h3 class="name">{{indust.name}}</h3>
+						</div>
+					{% endfor %}
+					<div class="industries">
+						<h3 class="name many-more">and many more!</h3>
+					</div>
+				</div>
+				<div class="btn">
+					<a class="custom-btn" href="/capabilities/" aria-label="Capabilities">SEE OUR CAPABILITIES</a>
+				</div>
+			</div>
+		</section>
+
+		<section class="quality-standards padding" id="quality-standards">
+			<div class="container">
+				{% set page = field.meta('quality') %}
+				<div class="statement">{{page.statement}}</div>
+				<div class="logos">
+					{% for logo in page.stanadards_logo %}
+						<div class="logo">
+							<img src="{{Image(logo.logo).src}}" alt="{{Image(logo.logo).alt}}" class="img-responsive"/>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</section>
+
+		<section class="faq-section padding" id="faq-section">
+			<div class="container">
+				{% set page = field.meta('faq') %}
+				<p class="section-title">{{page.section_title}}</p>
+				<h2 class="title">{{page.title}}</h2>
+				<div class="faq-list">
+					{% if page.faq_list is not empty %}
+						{% for faq in page.faq_list %}
+							<div class="faq-button">
+								<h3>
+									<span>{{faq.question}}</span>
+									{{source (directory ~ '/images/more.svg') }}{{source (directory ~ '/images/less.svg') }}</h3>
+								<div class="faq-answer">
+									{{faq.answer}}
+								</div>
+							</div>
+						{% endfor %}
+					{% endif %}
+				</div>
+			</div>
+		</section>
+
+		<section class="testimonials-section padding-tb" id="testimonials-section">
+			<div class="container padding-lr">
+				{% set page = field.meta('test_section') %}
+				<p class="section-title">{{page.section_title}}</p>
+				<h2 class="title">{{page.title}}</h2>
+			</div>
+			<div class="test-list" id="test-list">
+				<div class="testimonails-slider">
+					{% for test in page.testimonials %}
+						<div class="testimonail-content">
+							<div class="content h3">&quot;{{test.details}}&quot;</div>
+							<p class="center h3 name">{{test.name}}</p>
+							<p class="center section-title">{{test.designation}}</p>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</section>
+
+		<section class="news-section padding" id="news-section">
+			<div class="container">
+				{% set page = field.meta('news_section') %}
+				<p class="section-title">{{page.section_title}}</p>
+				<h2 class="title">{{page.title}}</h2>
+				<div class="body-content">{{page.desc}}</div>
+				<div class="news-content news-slider" id="news-content">
+					{% if news is not empty %}
+						{% for news in news %}
+							<div class="news-div">
+								<h2 class="h5">{{news.title|length > 55 ? news.title|slice(0,55) ~ '...' : news.title}}</h2>
+								<img class="img-responsive" src="{{ news.thumbnail.src}}" alt="feature-image"/>
+								<div class="content">
+									{{news.news_details|length > 190 ? news.news_details|slice(0,190) ~ '....' : news.news_details}}
+								</div>
+								<div class="btn">
+									<a class="custom-btn" href="{{news.link}}" aria-label="{{news.title}}">Learn more</a>
+								</div>
+							</div>
+						{% endfor %}
+					{% endif %}
+				</div>
+				<div class="view-btn">
+					<a class="custom-btn" href="/news-insight/" aria-label="News and Insights">View All</a>
+				</div>
+			</div>
+		</section>
+
 	</section>
 
 {% endblock %}
