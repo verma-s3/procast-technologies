@@ -4,7 +4,7 @@
 
 {% block content %}
 	<section class="{{field.title}}-page padding" id="{{field.title}}-page">
-		<div class="page-intro container">
+		<div class="page-intro container" data-aos="fade-in">
 			<div class="wrapper">
 				<h2 class="title">{{field.meta('page_details').title}}</h2>
 				<div class="description">{{field.meta('page_details').desc}}</div>
@@ -16,7 +16,7 @@
 				{% if services is not empty %}
 					{% for list in services %}
                     {% set service = list.meta('service') %}
-						<div class="service-list">
+						<div class="service-list" data-aos="fade-in">
                             <h2 class="h3">{{list.title}}</h2>
                             <div class="logo">{{ function('file_get_contents', Image(service.logo).src) }}</div>
 							<h3 class="h4">{{service.title}}</h3>

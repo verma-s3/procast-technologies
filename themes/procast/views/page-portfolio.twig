@@ -8,7 +8,9 @@
             <div class="portfolio-gallery">
                 {% if field.meta("gallery") %}
                     {% for gallery in field.meta("gallery") %}
-                        <img src="{{Image(gallery)}}" alt"portfolio" />
+                    <a href="{{Image(gallery)}}" data-fancybox="gallery" data-caption="Portfolio Images">
+                        <img src="{{Image(gallery)}}" alt="portfolio" data-aos="fade-in"/>
+                    </a>
                     {% endfor %}
                 {% endif %}
             </div>
@@ -16,3 +18,5 @@
     </section>
 
 {% endblock %}
+
+

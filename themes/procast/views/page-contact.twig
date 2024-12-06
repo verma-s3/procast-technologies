@@ -6,7 +6,7 @@
 	<section class="{{field.title}}-page padding" id="{{field.title}}-page">
 		<div class="container">
 			<div class="wrapper">
-				<div class="full-contact-details">					
+				<div class="full-contact-details" data-aos="fade-in">					
 					<div class="drop-us-a-line">
 						<h2 class="h4">Drop us a line</h2>
 						<p class="address">{{ options.address }}</p>
@@ -22,7 +22,7 @@
 						{% include 'partials/social-media.twig' %}
 					</div>
 				</div>
-				<div class="contact-form-details">
+				<div class="contact-form-details" data-aos="fade-in">
                     <h2>We'd love to hear from you!</h2>
 					{{fn('do_shortcode','[contact-form-7 id="ecdb74f" title="Contact Us"]')}}
 				</div>

@@ -9,7 +9,7 @@
                  {% if news is not empty %}
                     <div class="news-content">
                         {% for news in news %}
-                            <div class="news-div">
+                            <div class="news-div" data-aos="fade-in">
                                 <h2 class="h5">{{news.title|length > 55 ? news.title|slice(0,55) ~ '...' : news.title}}</h2>   
                                 <img class="img-responsive" src="{{ news.thumbnail.src}}" alt="feature-image" />
                                 <div class="content">

@@ -2,9 +2,11 @@
 {% block content %}
 	<div class="content-wrapper">
 		<article class="post-type-{{ post.post_type}} padding" id="post-{{ post.ID}}">
-			<section class="article-content">
-				<img src="{{ post.thumbnail.src}}" alt="feature-image" />
-				<div class="article-body">
+			<section class="article-content container">
+				{% if post.thumbnail is not empty %}
+				<img src="{{ post.thumbnail.src}}" alt="feature-image"  data-aos="fade-in"/>
+				{% endif %}
+				<div class="article-body" data-aos="fade-in">
 					{{post.meta('service_details').intro}}
 				</div>
 				{% if post.meta('service_details').add_pdf == true and post.meta('service_details').pdf is not empty %}

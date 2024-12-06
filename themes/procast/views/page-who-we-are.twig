@@ -1,145 +1,192 @@
 {% import './components/image.twig' as Image %}
 {% import './components/button.twig' as Button %}
-{% extends "base.twig" %} 
+{% extends "base.twig" %}
 
 {% block content %}
-    <section class="{{field.slug}}-page" id="{{field.slug}}-page">
-        <section class="journey-section padding-tb" id="journey-section">
-			<div class="container padding-lr">
+	<section class="{{field.slug}}-page" id="{{field.slug}}-page">
+		<section class="journey-section padding-tb" id="journey-section">
+			<div class="container padding-lr" data-aos="fade-in">
 				{% set page = field.meta('journey') %}
 				<p class="section-title">{{page.section_title}}</p>
 				<h2 class="title">{{page.title}}</h2>
 				<div class="body-content">{{page.description}}</div>
 			</div>
-            <div class="milstoners-container padding-top padding-lr" id="milstoners-container">
-                {# milestones slider here #}
-                <h3 class="slider-title">{{page.milestones.title}}</h3>
-                <div class="milestone-slider">
+			<div  data-aos="fade-in"
+				class="milstoners-container padding-top padding-lr" id="milstoners-container">
+				{# milestones slider here #}
+				<h3 class="slider-title">{{page.milestones.title}}</h3>
+				<div class="milestone-slider milestones-desktop-view">
+					<div class="mile-section">
+						<div class="div-left">
+							{% for mile in page.milestones.milestones_details %}
+                                {% set counter = (counter | default(0)) + 1 %}
+								<div class="milestone-year year-{{counter}}">
+									<h3 class="mile-button  {% if counter == 1 %} is-active {% endif %}">
+										<span>{{mile.year}}</span>
+									</h3>
+									<p class="desc {% if counter == 1 %} is-active {% endif %}">{{mile.desc}}</p>
+								</div>
+							{% endfor %}
+						</div>
+						<div class="mile-answer">
+							{% for mile in page.milestones.milestones_details %}
+								{% set counter = (counter | default(0)) + 1 %}
+								<div class="img-div img-{{counter}} {% if counter == 1 %} is-active {% endif %}">
+									{% if mile.image is not empty  %}
+										<img class="img-responsive b-15" src="{{Image(mile.image).src}}" alt="{{Image(faq.image).alt}}">
+									{% else %}
+										<img class="img-responsive b-15" src="{{site.theme.link}}/images/banner/hero-banner.jpg" alt="Placeholder">
+									{% endif %}
+								</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
 
-                </div>
-
-                {# mobile-view #}
-                <div class="milestones-mobile-view">
-
-                </div>
-            </div>
+				{# mobile-view #}
+				<div class="milestones-mobile-view">
+					{% for mile in page.milestones.milestones_details %}
+						<div class="year-button">
+							<h3>
+								<span>{{mile.year}}</span>
+							</h3>
+							<div class="year-answer">
+								<p>{{mile.desc}}</p>
+								{% if mile.image is not empty  %}
+									<div class="img-div">
+										<img class="img-responsive" src="{{Image(mile.image).src}}" alt="{{Image(faq.image).alt}}">
+									</div>
+								{% endif %}
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
 		</section>
 
-        <section class="padding-lr padding-top mission-section" id="mission-section">
-            <div class="container">
-            {% set page = field.meta('mission') %}
-                <div class="image-section">
-                    <img src="{{Image(page.image).src}}" alt="{{Image(page.image).alt}}" class="img-responsive" />
-                </div>
-                <div class="content-section">
-                    <h2 class="title">{{page.title}}</h2>
-                    <div class="body-content">{{page.description}}</div>
-                    <div class="values-section">
-                        {% set values = page.values %}
-                        <h3 class="section-title-core">{{values.title}}</h3>
-                        <div class="list-items">
-                            {% for value in values.core_values %}
-                                <div class="value-details">
-                                    <h4 class="name">{{value.title}}</h4>
-                                    <div class="body-content">{{value.desc}}</div>
-                                </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="padding vision-section" id="vision-section">
-            <div class="container">
-            {% set page = field.meta('vision') %}
-                <div class="content-section">
-                    <h2 class="title">{{page.title}}</h2>
-                    <h3 class="section title">{{page.section_title}}</h3>
-                    <div class="body-content">{{page.description}}</div>
-                </div>
-                <div class="image-section">
-                    <img src="{{Image(page.image).src}}" alt="{{Image(page.image).alt}}" class="img-responsive" />
-                </div>
-            </div>
-        </section>
-
-        <section class="padding mantra-section" id="mantra-section">
-            <div class="container">
-            {% set page = field.meta('mantra') %}
-                <div class="content-section">
-                    <h2 class="title">{{page.title}}</h2>
-                    <div class="body-content">{{page.description}}</div>
-                </div>
-                <div class="mantras">
-                    {% for culture in page.culture %}
-                        <div class="culture-list">
-                            <div class="logo">
-								{{ function('file_get_contents', Image(culture.logo).src) }}
-							</div>
-							<h3 class="name h6">{{culture.title}}</h3>
-                            <div class="content">{{culture.desc}}</div>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </section>
-
-        <section class="padding workspace-section" id="workspace-section">
-            <div class="container">
-            {% set page = field.meta('workspace') %}
-                <div class="content-section">
-                    <h2 class="title">{{page.title}}</h2>
-                    <div class="body-content">{{page.description}}</div>
-                </div>
-                <div class="workspaces">
-                    {% for culture in page.culture %}
-                        <div class="culture-list">
-                            <div class="logo">
-								{{ function('file_get_contents', Image(culture.logo).src) }}
-							</div>
-							<h3 class="name h6">{{culture.title}}</h3>
-                            <div class="content">{{culture.desc}}</div>
-                        </div>
-                    {% endfor %}
-                </div>
-                <div class="tag-line">
-                    {{page.section_subject}}
-                </div>
-                <div class="view-btn">
-					<a class="custom-btn" href="{{page.button.page_link}}" aria-label="Career page">{{page.button.name}}</a>
+		<section class="padding-lr padding-top mission-section" id="mission-section">
+			<div class="container" data-aos="fade-in">
+				{% set page = field.meta('mission') %}
+				<div class="image-section">
+					<img src="{{Image(page.image).src}}" alt="{{Image(page.image).alt}}" class="img-responsive"/>
 				</div>
-            </div>
-        </section>
+				<div class="content-section">
+					<h2 class="title">{{page.title}}</h2>
+					<div class="body-content">{{page.description}}</div>
+					<div class="values-section">
+						{% set values = page.values %}
+						<h3 class="section-title-core">{{values.title}}</h3>
+						<div class="list-items">
+							{% for value in values.core_values %}
+								<div class="value-details">
+									<h4 class="name">{{value.title}}</h4>
+									<div class="body-content">{{value.desc}}</div>
+								</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
 
-        <section class="padding community-section" id="community-section">
-            <div class="container">
-            {% set page = field.meta('community') %}
-            {% set comm = field.meta('our_community') %}
-                <div class="content-section">
-                    <h2 class="title">{{page.title}}</h2>
-                    <div class="body-content">{{page.description}}</div>
-                </div>
-                <div class="communities">
-                    {% for community in comm %}
-                        <div class="list-items">
-                            {% set comm = community.community_support %}
-                            <div class="image-section">
-                                <img src="{{Image(comm.featured_image).src}}" alt="{{Image(comm.featured_image).alt}}" class="img-responsive">
-                            </div>
-                            <div class="content-section">
-                                <div class="logo">
-                                    {{ function('file_get_contents', Image(comm.logo).src) }}
-                                </div>
-                                <h3 class="name">{{comm.title}}</h3>
-                                <div class="content">{{comm.desc}}</div>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </section>
+		<section class="padding vision-section" id="vision-section">
+			<div class="container" data-aos="fade-in">
+				{% set page = field.meta('vision') %}
+				<div class="content-section">
+					<h2 class="title">{{page.title}}</h2>
+					<h3 class="section title">{{page.section_title}}</h3>
+					<div class="body-content">{{page.description}}</div>
+				</div>
+				<div class="image-section">
+					<img src="{{Image(page.image).src}}" alt="{{Image(page.image).alt}}" class="img-responsive"/>
+				</div>
+			</div>
+		</section>
 
-    </section>
+		<section class="padding mantra-section" id="mantra-section">
+			<div class="container" data-aos="fade-in">
+				{% set page = field.meta('mantra') %}
+				<div class="content-section">
+					<h2 class="title">{{page.title}}</h2>
+					<div class="body-content">{{page.description}}</div>
+				</div>
+				<div class="mantras">
+					{% for culture in page.culture %}
+						<div class="culture-list">
+							<div class="logo">
+								{{ function('file_get_contents', Image(culture.logo).src) }}
+							</div>
+							<h3 class="name h6">{{culture.title}}</h3>
+							<div class="content">{{culture.desc}}</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</section>
+
+		<section class="padding workspace-section" id="workspace-section">
+			<div class="container" data-aos="fade-in">
+				{% set page = field.meta('workspace') %}
+				<div class="content-section">
+					<h2 class="title">{{page.title}}</h2>
+					<div class="body-content">{{page.description}}</div>
+				</div>
+				<div class="workspaces">
+					{% for culture in page.culture %}
+						<div class="culture-list">
+							<div class="logo">
+								{{ function('file_get_contents', Image(culture.logo).src) }}
+							</div>
+							<h3 class="name h6">{{culture.title}}</h3>
+							<div class="content">{{culture.desc}}</div>
+						</div>
+					{% endfor %}
+				</div>
+				<div class="tag-line">
+					{{page.section_subject}}
+				</div>
+				<div class="view-btn">
+					<a class="custom-btn" href="{{page.button.page_link}}/?select=Careers" aria-label="Career page">{{page.button.name}}</a>
+				</div>
+			</div>
+		</section>
+
+		<section class="padding community-section" id="community-section">
+			<div class="container" data-aos="fade-in">
+				{% set page = field.meta('community') %}
+				{% set comm = field.meta('our_community') %}
+				<div class="content-section">
+					<h2 class="title">{{page.title}}</h2>
+					<div class="body-content">{{page.description}}</div>
+				</div>
+				<div class="communities">
+					{% for community in comm %}
+						<div class="list-items">
+							{% set comm = community.community_support %}
+							{% set counter = (counter | default(0)) + 1 %}
+							<div class="image-section">
+								{% if counter != 2 %}
+								<img src="{{Image(comm.featured_image).src}}" alt="{{Image(comm.featured_image).alt}}" class="img-responsive">
+								{% else %}
+								<a href="https://www.truenorthyouthfoundation.com/" aria-label="true-north-logo" target="_blank" rel="noopener referrer">
+									<img src="{{Image(comm.featured_image).src}}" alt="{{Image(comm.featured_image).alt}}" class="img-responsive">
+
+								</a>
+								{% endif %}
+							</div>
+							<div class="content-section">
+								<div class="logo">
+									{{ function('file_get_contents', Image(comm.logo).src) }}
+								</div>
+								<h3 class="name">{{comm.title}}</h3>
+								<div class="content">{{comm.desc}}</div>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</section>
+
+	</section>
 
 {% endblock %}

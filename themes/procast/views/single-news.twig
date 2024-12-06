@@ -2,8 +2,8 @@
 {% block content %}
 	<div class="content-wrapper">
 		<article class="post-type-{{post.post_type}} padding" id="post-{{ post.ID}}">
-			<section class="article-content">
-				<div class="article-details">
+			<section class="article-content container">
+				<div class="article-details" data-aos="fade-in">
 					<h2>{{post.title}}</h2>
 					<div class="time-read">
 						<p class="date">{{ post.date|date('F j, Y')}}</p>
@@ -18,7 +18,7 @@
 						<a class="custom-btn" href="/news-insight/" aria-label="back-btn">Back to news &amp; insights</a>
 					</div>
 				</div>
-				<div class="article-body">
+				<div class="article-body" data-aos="fade-in">
 					<img src="{{ post.thumbnail.src}}" alt="feature-image"/>
 					{{post.meta('news_details')}}
 				</div>

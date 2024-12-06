@@ -1,5 +1,5 @@
 <?php
-  global $post;
+global $post;
 /*
   Template Name: Home
 */
@@ -12,7 +12,6 @@ $serviceArgs = [
   'post_type' => 'our-services',
   'post_status' => 'publish',
   'posts_per_page' => -1,
-  'orderby' => 'rand',
 ];
 $newsArgs = [
   'post_type' => 'news',
@@ -27,8 +26,8 @@ $context = Timber::context();
 $context['field'] = Timber::get_post();
 $context['services'] = Timber::get_posts($serviceArgs);
 $context['news'] = Timber::get_posts($newsArgs);
-$templates = array( 'page-home.twig' );
-Timber::render( $templates, $context );
+$templates = array('page-home.twig');
+Timber::render($templates, $context);
 
 
 

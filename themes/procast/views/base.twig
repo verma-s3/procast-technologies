@@ -16,7 +16,7 @@ class="{{body_class}}" data-template="base.twig">
 {% block header %}
 	<header class="header padding-lr">
 		<div class="wrapper container">
-			<a class="site-logo" href="{{site.url}}" rel="home" aria-label="{{site.name}}">
+			<a class="site-logo" href="{{site.url}}" rel="home" aria-label="{{site.name}}" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-offset="0">
 				{{source (directory ~ '/images/logo/procast-logo.svg') }}
 			</a>
 
@@ -24,7 +24,7 @@ class="{{body_class}}" data-template="base.twig">
 				{% include "menu.twig" with{'items':menu.get_items} %}
 			</nav>
 
-			<div class="button_container" id="toggleOpen">
+			<div class="button_container" id="toggleOpen" data-aos="fade-zoom-in" data-aos-easing="ease-in-back">
 				<span class="top"></span>
 				<span class="middle"></span>
 				<span class="bottom"></span>

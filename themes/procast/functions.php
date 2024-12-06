@@ -38,7 +38,7 @@
 // }
 
 $composer_autoload = __DIR__ . '/vendor/autoload.php';
-if ( file_exists( $composer_autoload ) ) {
+if (file_exists($composer_autoload)) {
 	require_once $composer_autoload;
 	$timber = new Timber\Timber();
 }
@@ -47,18 +47,18 @@ if ( file_exists( $composer_autoload ) ) {
  * This ensures that Timber is loaded and available as a PHP class.
  * If not, it gives an error message to help direct developers on where to activate
  */
-if ( ! class_exists( 'Timber' ) ) {
+if (!class_exists('Timber')) {
 
 	add_action(
 		'admin_notices',
-		function() {
-			echo '<div class="error"><p>Timber not activated. Make sure you activate the plugin in <a href="' . esc_url( admin_url( 'plugins.php#timber' ) ) . '">' . esc_url( admin_url( 'plugins.php' ) ) . '</a></p></div>';
+		function () {
+			echo '<div class="error"><p>Timber not activated. Make sure you activate the plugin in <a href="' . esc_url(admin_url('plugins.php#timber')) . '">' . esc_url(admin_url('plugins.php')) . '</a></p></div>';
 		}
 	);
 
 	add_filter(
 		'template_include',
-		function( $template ) {
+		function ($template) {
 			return get_stylesheet_directory() . '/static/no-timber.html';
 		}
 	);
@@ -68,7 +68,7 @@ if ( ! class_exists( 'Timber' ) ) {
 /**
  * Sets the directories (inside your theme) to find .twig files
  */
-Timber::$dirname = array( 'templates', 'views' );
+Timber::$dirname = array('templates', 'views');
 
 /**
  * By default, Timber does NOT autoescape values. Want to enable Twig's autoescape?
@@ -81,36 +81,37 @@ Timber::$autoescape = false;
  * We're going to configure our theme inside of a subclass of Timber\Site
  * You can move this to its own file and include here via php's include("MySite.php")
  */
-class StarterSite extends Timber\Site 
+class StarterSite extends Timber\Site
 {
 	/** Add timber support. */
-	public function __construct() {
-		add_action( 'after_setup_theme', array( $this, 'theme_supports' ) );
-		add_filter( 'timber/context', array( $this, 'add_to_context' ) );
-		add_filter( 'timber/twig', array( $this, 'add_to_twig' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'scripts_and_styles' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'loadGoogleFonts' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'loadFavicon' ) );
-		add_action( 'widgets_init', array( $this, 'widget_area' ) );
-		add_action( 'login_head', array( $this, 'custom_login_logo' ) );
-		add_filter( 'login_headerurl', array( $this, 'login_logo_url' ) );
-		add_filter( 'login_headertext', array( $this, 'login_logo_url_title' ) );
-		add_action( 'admin_menu', array( $this, 'remove_unecessary_menu_items' ) );
-		add_action('init', array( $this,'remove_editor' ) );
-		add_filter( 'timber_context', array( $this, 'options_page_global' ) );
-		add_action('wp_before_admin_bar_render', array( $this, 'admin_custom_logo' ) );
-		add_action( 'after_setup_theme', array( $this, 'theme_register_nav_menus' ) );
-		add_action( 'after_setup_theme', array( $this, 'image_cropping_sizes' ) );
-		add_action( 'after_setup_theme', array( $this, 'acf_options_page_for_theme' ) );
-		add_action( 'init', array( $this, 'register_custom_post_types' ) );
-		add_action( 'init', array( $this, 'register_taxonomies' ) );
-		add_action('admin_head', array( $this, 'my_custom_fonts') );
-		add_action( 'admin_menu', array( $this, 'remove_default_post_type') );
-		add_action( 'wp_before_admin_bar_render', array( $this, 'my_admin_bar_render') );
-		add_action( 'admin_menu', array( $this, 'my_remove_admin_menus') );
-		add_action('init', array( $this, 'remove_comment_support'), 100);
-		add_action( 'wp_before_admin_bar_render', array( $this, 'mytheme_admin_bar_render') );
-		add_action( 'add_attachment', array( $this, 'my_set_image_meta_upon_image_upload') );
+	public function __construct()
+	{
+		add_action('after_setup_theme', array($this, 'theme_supports'));
+		add_filter('timber/context', array($this, 'add_to_context'));
+		add_filter('timber/twig', array($this, 'add_to_twig'));
+		add_action('wp_enqueue_scripts', array($this, 'scripts_and_styles'));
+		add_action('wp_enqueue_scripts', array($this, 'loadGoogleFonts'));
+		add_action('wp_enqueue_scripts', array($this, 'loadFavicon'));
+		add_action('widgets_init', array($this, 'widget_area'));
+		add_action('login_head', array($this, 'custom_login_logo'));
+		add_filter('login_headerurl', array($this, 'login_logo_url'));
+		add_filter('login_headertext', array($this, 'login_logo_url_title'));
+		add_action('admin_menu', array($this, 'remove_unecessary_menu_items'));
+		add_action('init', array($this, 'remove_editor'));
+		add_filter('timber_context', array($this, 'options_page_global'));
+		add_action('wp_before_admin_bar_render', array($this, 'admin_custom_logo'));
+		add_action('after_setup_theme', array($this, 'theme_register_nav_menus'));
+		add_action('after_setup_theme', array($this, 'image_cropping_sizes'));
+		add_action('after_setup_theme', array($this, 'acf_options_page_for_theme'));
+		add_action('init', array($this, 'register_custom_post_types'));
+		add_action('init', array($this, 'register_taxonomies'));
+		add_action('admin_head', array($this, 'my_custom_fonts'));
+		add_action('admin_menu', array($this, 'remove_default_post_type'));
+		add_action('wp_before_admin_bar_render', array($this, 'my_admin_bar_render'));
+		add_action('admin_menu', array($this, 'my_remove_admin_menus'));
+		add_action('init', array($this, 'remove_comment_support'), 100);
+		add_action('wp_before_admin_bar_render', array($this, 'mytheme_admin_bar_render'));
+		add_action('add_attachment', array($this, 'my_set_image_meta_upon_image_upload'));
 
 		parent::__construct();
 	}
@@ -121,39 +122,43 @@ class StarterSite extends Timber\Site
 	 * @param \Twig\Environment $twig
 	 * @return \Twig\Environment
 	 */
-	public function add_to_twig( $twig ) {
+	public function add_to_twig($twig)
+	{
 		require_once('custom-function.php');
-		
+
 		return $twig;
-	} 
-	
+	}
+
 	/** This is where you can register custom post types. */
-	public function register_custom_post_types() {
+	public function register_custom_post_types()
+	{
 		//News
-		register_post_type( 'news',
-		array(
-			'labels' => array(
-				'name' => __( 'News' ),
-				'singular_name' => __( 'News' )
-			),
-			'public' => true,
-			'has_archive' => false,
-			'menu_icon'   => 'dashicons-format-aside',
-			'supports'    => array('title', 'thumbnail'),
+		register_post_type(
+			'news',
+			array(
+				'labels' => array(
+					'name' => __('News'),
+					'singular_name' => __('News')
+				),
+				'public' => true,
+				'has_archive' => false,
+				'menu_icon' => 'dashicons-format-aside',
+				'supports' => array('title', 'thumbnail'),
 			)
 		);
 
 		// Our Services
-		register_post_type( 'our-services',
-		array(
-			'labels' => array(
-				'name' => __( 'Our Services' ),
-				'singular_name' => __( 'Our Services' )
-			),
-			'public' => true,
-			'has_archive' => false,
-			'menu_icon'   => 'dashicons-hammer',
-			'supports'    => array('title', 'thumbnail'),
+		register_post_type(
+			'our-services',
+			array(
+				'labels' => array(
+					'name' => __('Our Services'),
+					'singular_name' => __('Our Services')
+				),
+				'public' => true,
+				'has_archive' => false,
+				'menu_icon' => 'dashicons-hammer',
+				'supports' => array('title', 'thumbnail'),
 			)
 		);
 
@@ -165,24 +170,26 @@ class StarterSite extends Timber\Site
 		// register_taxonomy('recipe_ingredients', 'recipe', array('hierarchical' => true, 'label' => __( 'Feature Ingredients', 'progression' ), 'query_var' => true, 'rewrite' => true));
 
 	}
-	
+
 	/** This is where you can register custom taxonomies. */
-	public function register_taxonomies() {
-		
+	public function register_taxonomies()
+	{
+
 	}
 
-	
+
 	/** This is where you add some context
 	 *
 	 * @param string $context context['this'] Being the Twig's {{ this }}.
 	 */
-	public function add_to_context( $context ) {
+	public function add_to_context($context)
+	{
 		// Ensure $context is an array
-		if ( ! is_array( $context ) ) {
+		if (!is_array($context)) {
 			$context = [];
 		}
-		$context['menu']  = new Timber\Menu();
-		$context['site']  = $this;
+		$context['menu'] = new Timber\Menu();
+		$context['site'] = $this;
 		return $context;
 	}
 
@@ -190,21 +197,22 @@ class StarterSite extends Timber\Site
 	/**
 	 * Load Styles and Scripts Here
 	 */
-	public function scripts_and_styles() {
-		wp_enqueue_style( 'dashicons' );
-		wp_enqueue_script( 'my-script', get_template_directory_uri() . '/static/js/all.min.js', array('jquery'), true );	
+	public function scripts_and_styles()
+	{
+		wp_enqueue_style('dashicons');
+		wp_enqueue_script('my-script', get_template_directory_uri() . '/static/js/all.min.js', array('jquery'), true);
 		// wp_enqueue_script( 'slick-script', get_template_directory_uri() . '/slick/slick.min.js', array('jquery'), true );	
 		// wp_enqueue_style( 'slick-css', get_template_directory_uri() . '/slick/slick.css' );
 		// wp_enqueue_style( 'slick-theme-css', get_template_directory_uri() . '/slick/slick-theme.css' );
-		wp_enqueue_style( 'my-style', get_template_directory_uri() . '/static/css/main.css');	
-		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-			wp_enqueue_script( 'comment-reply' );
+		wp_enqueue_style('my-style', get_template_directory_uri() . '/static/css/main.css');
+		if (is_singular() && comments_open() && get_option('thread_comments')) {
+			wp_enqueue_script('comment-reply');
 		}
 	}
 
 	/**
 	 * Register widget area.
-	*/
+	 */
 	// public function widget_area() {
 	// 	register_sidebar( array(
 	// 		'name'          => esc_html__( 'Sidebar', 'procast' ),
@@ -218,7 +226,8 @@ class StarterSite extends Timber\Site
 	// }
 
 	// *** login logo ***
-	public function custom_login_logo() {
+	public function custom_login_logo()
+	{
 		echo '
 			<style type="text/css">
 				.login #login h1 a {
@@ -284,28 +293,32 @@ class StarterSite extends Timber\Site
 	}
 
 	// *** login URL ***
-	public function login_logo_url() {
+	public function login_logo_url()
+	{
 		return home_url();
 	}
 
-		
+
 	// *** login title ***
-	public function login_logo_url_title() {
+	public function login_logo_url_title()
+	{
 		return 'procast';
 	}
 
 	// *** Remove unecessary menu items for all but Administrators ***
-	public function remove_unecessary_menu_items() {
+	public function remove_unecessary_menu_items()
+	{
 		$user = wp_get_current_user();
-		if ( ! $user->has_cap( 'manage_options' ) ) {
-			remove_menu_page( 'edit-comments.php' );
-			remove_menu_page( 'tools.php' );
-			remove_menu_page( 'profile.php' );
+		if (!$user->has_cap('manage_options')) {
+			remove_menu_page('edit-comments.php');
+			remove_menu_page('tools.php');
+			remove_menu_page('profile.php');
 		}
 	}
 
 	// *** Remove Editor ***
-	public function remove_editor() {
+	public function remove_editor()
+	{
 		if (isset($_GET['post'])) {
 			$id = $_GET['post'];
 			$template = get_post_meta($id, '_wp_page_template', true);
@@ -320,23 +333,25 @@ class StarterSite extends Timber\Site
 				case 'page-templates/page-services.php':
 				case 'page-templates/page-who-we-are.php':
 
-				remove_post_type_support('page', 'editor');
-				break;
-				default :
-				// Don't remove any other template.
-				break;
+					remove_post_type_support('page', 'editor');
+					break;
+				default:
+					// Don't remove any other template.
+					break;
 			}
 		}
 	}
 
 	/* Use Options Page Globally */
-	public function options_page_global( $context ) {
+	public function options_page_global($context)
+	{
 		$context['options'] = get_fields('option');
 		return $context;
 	}
 
 	/* Custom Backend Logo */
-	public function admin_custom_logo() {
+	public function admin_custom_logo()
+	{
 		echo '<style type="text/css">
 		#wpadminbar #wp-toolbar #wp-admin-bar-root-default #wp-admin-bar-wp-logo {
 			width: 160px;
@@ -384,14 +399,15 @@ class StarterSite extends Timber\Site
 	</style>
 	';
 	}
-	
-		
+
+
 	/**
 	 * Theme Support
 	 */
-	public function theme_supports() {
+	public function theme_supports()
+	{
 		// Add default posts and comments RSS feed links to head.
-		add_theme_support( 'automatic-feed-links' );
+		add_theme_support('automatic-feed-links');
 
 		/*
 		 * Let WordPress manage the document title.
@@ -399,14 +415,14 @@ class StarterSite extends Timber\Site
 		 * hard-coded <title> tag in the document head, and expect WordPress to
 		 * provide it for us.
 		 */
-		add_theme_support( 'title-tag' );
+		add_theme_support('title-tag');
 
 		/*
 		 * Enable support for Post Thumbnails on posts and pages.
 		 *
 		 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		 */
-		add_theme_support( 'post-thumbnails' );
+		add_theme_support('post-thumbnails');
 
 		/*
 		 * Switch default core markup for search form, comment form, and comments
@@ -440,40 +456,44 @@ class StarterSite extends Timber\Site
 			)
 		);
 
-		add_theme_support( 'menus' );
+		add_theme_support('menus');
 	}
 
 	/**
 	 * Regsiter Nav Menus
 	 */
-	public function theme_register_nav_menus() {
-		register_nav_menus( array(
-			'primary_menu' => esc_html__( 'Primary Menu', 'procast' ),
-		) );		
+	public function theme_register_nav_menus()
+	{
+		register_nav_menus(array(
+			'primary_menu' => esc_html__('Primary Menu', 'procast'),
+		));
 	}
 
 	/**
 	 * Regsiter ACF Options Page
 	 */
-	public function acf_options_page_for_theme() {
-		if( function_exists('acf_add_options_page') ) {
+	public function acf_options_page_for_theme()
+	{
+		if (function_exists('acf_add_options_page')) {
 			acf_add_options_page();
-			acf_set_options_page_title( __('Footer') );
-		}		
+			acf_set_options_page_title(__('Footer'));
+		}
 	}
 
 	/**
 	 * Image Cropping Sizes
 	 */
-	public function image_cropping_sizes() {
+	public function image_cropping_sizes()
+	{
 		add_image_size('hero', 1640, 768, true);
 	}
 
 	/****************
 	 * Admin styling
-	****************/
+	 ****************/
 
-	public function my_custom_fonts() {
+	public function my_custom_fonts()
+	{
 		echo '<style type="text/css">
 
 		#wpwrap #adminmenumain #adminmenuwrap #adminmenu li a.wp-has-current-submenu .wp-menu-image:before {
@@ -560,32 +580,37 @@ class StarterSite extends Timber\Site
 	 * Remove default posts
 	 ***************************/
 
-	public function remove_default_post_type() {
-		remove_menu_page( 'edit.php' );
+	public function remove_default_post_type()
+	{
+		remove_menu_page('edit.php');
 	}
 
 
 	/***************************
 	 * REMOVE COMMENT FUNCTION
 	 ****************************/
-	public function my_admin_bar_render() {
+	public function my_admin_bar_render()
+	{
 		global $wp_admin_bar;
 		$wp_admin_bar->remove_menu('comments');
 	}
 
 	// Removes from admin menu
-	public function my_remove_admin_menus() {
-		remove_menu_page( 'edit-comments.php' );
+	public function my_remove_admin_menus()
+	{
+		remove_menu_page('edit-comments.php');
 	}
 
 	// Removes from post and pages
-	public function remove_comment_support() {
-		remove_post_type_support( 'post', 'comments' );
-		remove_post_type_support( 'page', 'comments' );
+	public function remove_comment_support()
+	{
+		remove_post_type_support('post', 'comments');
+		remove_post_type_support('page', 'comments');
 	}
 
 	// Removes from admin bar
-	public function mytheme_admin_bar_render() {
+	public function mytheme_admin_bar_render()
+	{
 		global $wp_admin_bar;
 		$wp_admin_bar->remove_menu('comments');
 	}
@@ -594,7 +619,8 @@ class StarterSite extends Timber\Site
 	/*************************
 	 * Load Google Fonts
 	 **************************/
-	public function loadGoogleFonts() {
+	public function loadGoogleFonts()
+	{
 		echo '<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">';
@@ -604,40 +630,41 @@ class StarterSite extends Timber\Site
 	/*************************
 	 * Load Favicon
 	 **************************/
-	public function loadFavicon() {
-		// echo '<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-		// <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-		// <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-		// <link rel="manifest" href="/site.webmanifest">
-		// <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-		// <meta name="msapplication-TileColor" content="#ffffff">
-		// <meta name="theme-color" content="#ffffff">';
+	public function loadFavicon()
+	{
+		echo '<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+				<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+				<link rel="shortcut icon" href="/favicon.ico" />
+				<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+				<meta name="apple-mobile-web-app-title" content="ProCast" />
+				<link rel="manifest" href="/site.webmanifest" />';
 	}
 
 	/*******************************
 	 * Add ALT tags to empty images
 	 *******************************/
-	public function my_set_image_meta_upon_image_upload( $post_ID ) {
+	public function my_set_image_meta_upon_image_upload($post_ID)
+	{
 		// Check if uploaded file is an image, else do nothing
-		if ( wp_attachment_is_image( $post_ID ) ) {
-			$my_image_title = get_post( $post_ID )->post_title;
+		if (wp_attachment_is_image($post_ID)) {
+			$my_image_title = get_post($post_ID)->post_title;
 			// Sanitize the title:  remove hyphens, underscores & extra spaces:
-			$my_image_title = preg_replace( '%\s*[-_\s]+\s*%', ' ',  $my_image_title );
+			$my_image_title = preg_replace('%\s*[-_\s]+\s*%', ' ', $my_image_title);
 			// Sanitize the title:  capitalize first letter of every word (other letters lower case):
-			$my_image_title = ucwords( strtolower( $my_image_title ) );
+			$my_image_title = ucwords(strtolower($my_image_title));
 			// Create an array with the image meta (Title, Caption, Description) to be updated
 			// Note:  comment out the Excerpt/Caption or Content/Description lines if not needed
 			$my_image_meta = array(
-				'ID'		=> $post_ID,			// Specify the image (ID) to be updated
-				'post_title'	=> $my_image_title,		// Set image Title to sanitized title
-				'post_excerpt'	=> $my_image_title,		// Set image Caption (Excerpt) to sanitized title
-				'post_content'	=> $my_image_title,		// Set image Description (Content) to sanitized title
+				'ID' => $post_ID,			// Specify the image (ID) to be updated
+				'post_title' => $my_image_title,		// Set image Title to sanitized title
+				'post_excerpt' => $my_image_title,		// Set image Caption (Excerpt) to sanitized title
+				'post_content' => $my_image_title,		// Set image Description (Content) to sanitized title
 			);
 			// Set the image Alt-Text
-			update_post_meta( $post_ID, '_wp_attachment_image_alt', $my_image_title );
+			update_post_meta($post_ID, '_wp_attachment_image_alt', $my_image_title);
 			// Set the image meta (e.g. Title, Excerpt, Content)
-			wp_update_post( $my_image_meta );
-		} 
+			wp_update_post($my_image_meta);
+		}
 	}
 }
 
@@ -646,14 +673,14 @@ class StarterSite extends Timber\Site
 // 	$content = get_post_field( 'post_content', $post->ID );
 // 	$word_count = str_word_count( strip_tags( $content ) );
 // 	$readingtime = ceil($word_count / 200);
-	
+
 // 	if ($readingtime == 1) {
 // 	$timer = " minute";
 // 	} else {
 // 	$timer = " minutes";
 // 	}
 // 	$totalreadingtime = $readingtime . $timer;
-	
+
 // 	return $totalreadingtime;
 // }
 
